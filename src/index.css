@@ -1,13 +1,123 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+body{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    background: lightgrey;
+}
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 70px;
+}
+.card{
+    flex: 1 1 300px;
+    max-width: 700px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s;
+    padding: 5px 0;
+}
+.view{
+        padding: 20px;
+        background: rgb(239, 237, 237);
+        min-height: 100vh;
+        box-sizing: border-box;
+}
+.view .card{
+    max-width: 80%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    height: fit-content;
+
+}
+.view .card .img-container{
+    padding-top: 30%;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.card:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
+
+.card .img-container{
+    position: relative;
+    padding-top: 75%;
+    width: 100%;
+}
+.card .img-container img{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.info{
+    margin: 1rem;
+}
+.info .title{
+    font-size: 1.4rem;
+}
+.info .description{
+    font-size: 0.9rem;
+}
+.info .price{
+    font-size: 1.1rem;
+}
+.header{
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    background: #fff;
+    padding: 10px;
+    justify-content: space-between;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+form input {
+    font-size: 20px;
+    outline: transparent;
+}
+
+.sort{
+    display: flex;
+    gap: 15px;
+}
+.sort select{
+    font-size: 15px;
+    outline: transparent;
+}
+label{
+    font-weight: bolder;
+    margin-right: 10px;
+}
+.view{
+    display: flex;
+    justify-content: center;
+}
+.item{
+    padding: 10px 15px;
+    border-radius: 50%;
+    cursor: pointer;
+
+}
+.active{
+    background: blue;
+    color: #fff;
+}
+.pagination{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin-top: 10px;
+    background: #fff;
+}
+.pagination ul{
+    display: flex;
+    /* gap: 10px; */
+    list-style: none;
+}
+
