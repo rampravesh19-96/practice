@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useMemo,useCallback } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import apiAction from '../redux/apiAction';
@@ -14,7 +14,7 @@ const search = (items=[],query,queryList=["title","description"]) => {
 }
 
 const sorting = (items=[],sortBy,isAscending=true) => {
-    return items.sort((a,b)=>{
+    return [...items].sort((a,b)=>{
         if(a[sortBy]>b[sortBy]){
             return isAscending?1:-1
         }
@@ -47,26 +47,56 @@ function Dashboard(props) {
     const [sortBy,setSortBy] = useState('')
     const [orderBy,setOrderBy] = useState('asc')
     const [currentPage,setCurrentPage] = useState(1)
-    const filteredData = search(data.data || [],query)
-    const sorteddata = sorting(filteredData,sortBy,orderBy==='asc')
-    const paginatedData = pagination(sorteddata,currentPage)
 
-    const handleClick = (id) => {
-        navigate(`${id}`)
-    }
-    const handleSearch = (e) => {
-        e.preventDefault()
-        setQuery(e.target.search.value)
-        setCurrentPage(1)
-    }
+    // const filteredData = search(data.data || [],query)
+    // const sorteddata = sorting(filteredData,sortBy,orderBy==='asc')
+    // const paginatedData = pagination(sorteddata,currentPage)
 
-    const handleSorting = (sortBy,isAscending=true) => {
-        setSortBy(sortBy)
-        setOrderBy(isAscending?'asc':'desc')
-    }
-    const handlePage = (page) => {
-        setCurrentPage(page)
-    }
+    const filteredData = useMemo(() => search(data.data || [], query), [data, query]);
+    const sortedData = useMemo(() => sorting(filteredData, sortBy, orderBy === "asc"), [filteredData, sortBy, orderBy]);
+    const paginatedData = useMemo(() => pagination(sortedData, currentPage), [sortedData, currentPage]);
+
+
+    // const handleClick = (id) => {
+    //     navigate(`${id}`)
+    // }
+
+    // const handleSearch = (e) => {
+    //     e.preventDefault()
+    //     setQuery(e.target.search.value)
+    //     setCurrentPage(1)
+    // }
+
+    // const handleSorting = (sortBy,isAscending=true) => {
+    //     setSortBy(sortBy)
+    //     setOrderBy(isAscending?'asc':'desc')
+    // }
+    // const handlePage = (page) => {
+    //     setCurrentPage(page)
+    // }
+
+
+    const handleClick = useCallback((id) => {
+        navigate(`${id}`);
+    }, [navigate]);
+
+    
+    const handleSearch = useCallback((e) => {
+        e.preventDefault();
+        setQuery(e.target.search.value);
+        setCurrentPage(1);
+    }, []);
+    
+    const handleSorting = useCallback((sortBy, isAscending = true) => {
+        setSortBy(sortBy);
+        setOrderBy(isAscending ? "asc" : "desc");
+    }, []);
+    
+    const handlePage = useCallback((page) => {
+        setCurrentPage(page);
+    }, []);
+    
+
 
 
     useEffect(()=>{

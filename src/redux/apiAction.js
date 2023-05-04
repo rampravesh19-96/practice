@@ -1,9 +1,12 @@
+import axios from 'axios';
+
 const apiAction = () => {
     return dispatch => {
-        fetch("https://fakestoreapi.com/products")
-        .then(response => response.json())
-        .then(data => dispatch({type:'ON_SUCCESS',payload:data,loading:false}))
+        axios.get('https://fakestoreapi.com/products')
+            .then(response => {
+                dispatch({type:'ON_SUCCESS',payload:response.data,loading:false})
+            })
     }
 }
 
-export default apiAction
+export default apiAction;

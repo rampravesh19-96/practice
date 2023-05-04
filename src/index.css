@@ -9,6 +9,7 @@ body{
     flex-wrap: wrap;
     gap: 15px;
     margin-top: 70px;
+    margin-bottom: 90px;
 }
 .card{
     flex: 1 1 300px;
