@@ -1,43 +1,11 @@
 import React, { useState,useMemo,useCallback } from 'react';
+import "./Dashboard.css"
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import apiAction from '../redux/apiAction';
 import Card from './Card';
 import { useNavigate } from 'react-router-dom';
-
-const search = (items=[],query,queryList=["title","description"]) => {
-    return items.filter(item => 
-            queryList.some(key => 
-                item[key].toLowerCase().indexOf(query.toLowerCase()) !== -1
-                )
-        )
-}
-
-const sorting = (items=[],sortBy,isAscending=true) => {
-    return [...items].sort((a,b)=>{
-        if(a[sortBy]>b[sortBy]){
-            return isAscending?1:-1
-        }
-        if(a[sortBy]<b[sortBy]){
-            return isAscending?-1:1
-        }
-        return 0
-    }
-        
-    )
-}
-
-const pagination = (items=[],currentPage=1,itemsPerPage=5) => {
-    const noOfPages = Math.ceil(items.length/itemsPerPage)
-    const startIndex = (currentPage-1)*itemsPerPage
-    const endIndex = currentPage*itemsPerPage
-    const currentPageData = items.slice(startIndex,endIndex)
-    return {
-        data : currentPageData,
-        no_of_pages : noOfPages,
-        current_page : currentPage
-    }
-}
+import { search,sorting,pagination } from './models';
 
 function Dashboard(props) {
     const data = useSelector(state => state.apiReducer)
@@ -47,40 +15,18 @@ function Dashboard(props) {
     const [sortBy,setSortBy] = useState('')
     const [orderBy,setOrderBy] = useState('asc')
     const [currentPage,setCurrentPage] = useState(1)
-
-    // const filteredData = search(data.data || [],query)
-    // const sorteddata = sorting(filteredData,sortBy,orderBy==='asc')
-    // const paginatedData = pagination(sorteddata,currentPage)
-
     const filteredData = useMemo(() => search(data.data || [], query), [data, query]);
     const sortedData = useMemo(() => sorting(filteredData, sortBy, orderBy === "asc"), [filteredData, sortBy, orderBy]);
-    const paginatedData = useMemo(() => pagination(sortedData, currentPage), [sortedData, currentPage]);
+    const paginatedData = useMemo(() => pagination(sortedData,currentPage),[sortedData,currentPage])
 
-
-    // const handleClick = (id) => {
-    //     navigate(`${id}`)
-    // }
-
-    // const handleSearch = (e) => {
-    //     e.preventDefault()
-    //     setQuery(e.target.search.value)
-    //     setCurrentPage(1)
-    // }
-
-    // const handleSorting = (sortBy,isAscending=true) => {
-    //     setSortBy(sortBy)
-    //     setOrderBy(isAscending?'asc':'desc')
-    // }
-    // const handlePage = (page) => {
-    //     setCurrentPage(page)
-    // }
-
+    useEffect(()=>{
+        dispatch(apiAction())
+    },[dispatch])
 
     const handleClick = useCallback((id) => {
         navigate(`${id}`);
     }, [navigate]);
 
-    
     const handleSearch = useCallback((e) => {
         e.preventDefault();
         setQuery(e.target.search.value);
@@ -97,14 +43,8 @@ function Dashboard(props) {
     }, []);
     
 
-
-
-    useEffect(()=>{
-        dispatch(apiAction())
-    },[dispatch])
-
     return (
-        <main>
+        <main className='dashboard'>
             <div className="header">
                 <form onSubmit={handleSearch}>
                     <input type="text" name='search' />
