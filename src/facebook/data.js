@@ -1,0 +1,110 @@
+const storyAndPostData = [
+    {
+      type: 'story',
+      image: 'upload.png',
+      text: 'Post story',
+    },
+    {
+      type: 'story',
+      image: 'member-1.png',
+      text: 'Alison',
+    },
+    {
+      type: 'story',
+      image: 'member-2.png',
+      text: 'Jackson',
+    },
+    {
+      type: 'story',
+      image: 'member-3.png',
+      text: 'Samona',
+    },
+    {
+      type: 'story',
+      image: 'member-4.png',
+      text: 'John Doe',
+    },
+    {
+      type: 'post',
+      user: {
+        name: 'John Nicholson',
+        profilePic: 'profile-pic.png',
+      },
+      time: 'June 24 2021, 13:40 pm',
+      text: 'Subscribe @Easy Tutorials YouTube channel to watch more videos on Website development and UI design.',
+      image: 'feed-image-1.png',
+      likes: 120,
+      comments: 45,
+      shares: 20,
+    },
+    {
+      type: 'post',
+      user: {
+        name: 'John Nicholson',
+        profilePic: 'profile-pic.png',
+      },
+      time: 'June 24 2021, 13:40 pm',
+      text: 'Like and share this video with friends @Easy Tutorials Facebook page on your post like and subscribe and share with friends.',
+      image: 'feed-image-2.png',
+      likes: 120,
+      comments: 45,
+      shares: 20,
+    },
+    {
+      type: 'post',
+      user: {
+        name: 'John Nicholson',
+        profilePic: 'profile-pic.png',
+      },
+      time: 'June 24 2021, 13:40 pm',
+      text: 'Like and share this video with friends @Easy Tutorials Facebook page on your post like and subscribe and share with friends.',
+      image: 'feed-image-3.png',
+      likes: 120,
+      comments: 45,
+      shares: 20,
+    },
+  ];
+const postData  = [
+    {
+      id: 1,
+      user: "John Nicholson",
+      time: "June 24 2021, 13:40 pm",
+      text: "Subscribe @Easy Tutorials YouTube channel to watch more videos on Website development and UI design. #EasyTtorials #YouTubeChannel",
+      image: "feed-image-1.png",
+      likes: 120,
+      comments: 45,
+      shares: 20,
+    },
+    {
+      id: 2,
+      user: "John Nicholson",
+      time: "June 24 2021, 13:40 pm",
+      text: "Like and share this video with friends @Easy Tutorials Facebook page on your post like and subscribe and share with friends. #EasyTtorials #YouTubeChannel",
+      image: "feed-image-2.png",
+      likes: 120,
+      comments: 45,
+      shares: 20,
+    },
+    {
+      id: 3,
+      user: "John Nicholson",
+      time: "June 24 2021, 13:40 pm",
+      text: "Like and share this video with friends @Easy Tutorials Facebook page on your post like and subscribe and share with friends. #EasyTtorials #YouTubeChannel",
+      image: "feed-image-3.png",
+      likes: 120,
+      comments: 45,
+      shares: 20,
+    },
+    {
+      id: 4,
+      user: "John Nicholson",
+      time: "June 24 2021, 13:40 pm",
+      text: "Like and share this video with friends @Easy Tutorials Facebook page on your post like and subscribe and share with friends. #EasyTtorials #YouTubeChannel",
+      image: "feed-image-4.png",
+      likes: 120,
+      comments: 45,
+      shares: 20,
+    },
+  ];
+
+  export  {storyAndPostData,postData}

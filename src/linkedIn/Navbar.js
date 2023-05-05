@@ -24,7 +24,7 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-left">
-        <a href="index.html" className="logo">
+        <a href="" className="logo">
           <img src={logo} alt="logo" />
         </a>
 
